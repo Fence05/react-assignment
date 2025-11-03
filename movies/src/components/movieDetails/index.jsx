@@ -77,7 +77,7 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         ))}
       </Paper>
 
-      <Paper component="ul" sx={{ padding: 2, marginTop: 2 }}>
+      <Paper sx={{ padding: 2, marginTop: 2 }}>
         <MovieCredits movie={movie} />
       </Paper>
 

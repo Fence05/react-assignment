@@ -23,12 +23,12 @@ const recommendations = data?.results?.slice(0, 3);
 
   return (
     <>
-      <Typography variant="h5" sx={{ marginLeft: 2, marginBottom: 1 }}>
+      <Typography variant="h5" >
         Recommended Movies
       </Typography>
       <Grid container spacing={2} sx={{ padding: 2 }}>
         {recommendations.map((rec) => (
-          <Grid item key={rec.id} xs={12} sm={6} md={4}>
+          <Grid item key={rec.id}>
             <MovieCard movie={rec} action={() => <></>} />
           </Grid>
         ))}
