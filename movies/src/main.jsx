@@ -14,9 +14,8 @@ import UpcomingMoviesPage from './pages/upcomingMoviesPage';
 import MustWatchMoviesPage from './pages/mustWatchMoviesPage';
 import TopRatedMoviesPage from './pages/topRatedMoviesPage';
 import NowPlayingMoviesPage from './pages/nowPlayingMoviesPage';
-import CreditsPage from "./pages/creditsPage";
-
-
+import MovieCredits from "./components/movieCredits";
+import MovieRecommendations from "./components/movieRecommendations";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,7 +45,8 @@ const App = () => {
             <Route path="/movies/must-watch" element={ <MustWatchMoviesPage /> } />
             <Route path="/movies/top-rated" element={ <TopRatedMoviesPage /> } />
             <Route path="/movies/now-playing" element={ <NowPlayingMoviesPage /> } />
-            <Route path="/movies/:id/credits" element={<CreditsPage />} />
+            <Route path="/movies/:id/credits" element={<MovieCredits />} />
+            <Route path="/movies/:id/recommendations" element={<MovieRecommendations />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>

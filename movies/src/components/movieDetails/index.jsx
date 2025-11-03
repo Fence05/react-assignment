@@ -10,9 +10,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import MovieCredits from "../movieCredits";
-import MovieRecommendations from "../movieReviews.jsx";
-
-
+import MovieRecommendations from "../movieRecommendations";
 
 
 const root = {
@@ -83,9 +81,11 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         <MovieCredits movie={movie} />
       </Paper>
 
-      <Paper component="ul" sx={{ padding: 2, marginTop: 2 }}>
+      <Paper sx={{ padding: 2, marginTop: 2 }}>
         <MovieRecommendations movie={movie} />
       </Paper>
+
+
       
 
       <Fab
