@@ -17,6 +17,7 @@ import NowPlayingMoviesPage from './pages/nowPlayingMoviesPage';
 import CreditsPage from "./pages/creditsPage";
 
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
