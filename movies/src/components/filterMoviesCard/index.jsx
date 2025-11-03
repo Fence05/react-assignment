@@ -20,7 +20,8 @@ const formControl =
   {
     margin: 1,
     minWidth: "90%",
-    backgroundColor: "rgb(255, 255, 255)"
+    backgroundColor: "#ffefea",
+    borderRadius: "20px", border: "1px solid #black"
   };
 
 export default function FilterMoviesCard(props) {
@@ -62,7 +63,7 @@ export default function FilterMoviesCard(props) {
   return (
     <Card 
       sx={{
-        backgroundColor: "rgb(204, 204, 0)"
+        backgroundColor: "#28666e"
       }} 
       variant="outlined">
       <CardContent>
@@ -104,13 +105,7 @@ export default function FilterMoviesCard(props) {
         image={img}
         title="Filter"
       />
-      <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
-        </Typography>
-      </CardContent>
+
     </Card>
   );
 }

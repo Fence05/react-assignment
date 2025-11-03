@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
@@ -25,9 +26,12 @@ const SiteHeader = () => {
 
   const menuOptions = [
     { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Must Watch", path: "/movies/must-watch" },
+    { label: "Top Rated", path: "/movies/top-rated" },
+    { label: "Now Playing", path: "/movies/now-playing" },
+    { label: "Favorites", path: "/movies/favorites", sx: { color: "#f9bca5e7", fontWeight: "bold" } },
+    { label: "Must Watch", path: "/movies/must-watch", sx: { color: "#f9bca5e7", fontWeight: "bold" } },
+
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -41,14 +45,12 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" sx={{ backgroundColor: "#28666e" }}>
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
-            TMDB Client
+            Movie Database
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
-          </Typography>
+
             {isMobile ? (
               <>
                 <IconButton
@@ -79,6 +81,7 @@ const SiteHeader = () => {
                     <MenuItem
                       key={opt.label}
                       onClick={() => handleMenuSelect(opt.path)}
+                      sx={opt.sx}
                     >
                       {opt.label}
                     </MenuItem>
@@ -92,6 +95,7 @@ const SiteHeader = () => {
                     key={opt.label}
                     color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
+                    sx={opt.sx}
                   >
                     {opt.label}
                   </Button>
