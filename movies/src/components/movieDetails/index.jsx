@@ -9,6 +9,8 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+import MovieCredits from "../movieCredits";
+
 
 
 
@@ -75,6 +77,11 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
+
+      <Paper component="ul" sx={{ padding: 2, marginTop: 2 }}>
+        <MovieCredits movie={movie} />
+      </Paper>
+      
 
       <Fab
         color="secondary"
