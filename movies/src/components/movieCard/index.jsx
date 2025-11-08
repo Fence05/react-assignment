@@ -35,7 +35,7 @@ export default function MovieCard({ movie, action }) {
 
 
   return (
-    <Card>
+    <Card sx={{borderRadius: 5, height: '100%', display: 'flex', flexDirection: 'column'}}>
       <CardHeader
         avatar={
           movie.favorite ? (
@@ -51,16 +51,16 @@ export default function MovieCard({ movie, action }) {
         }
       />
       <CardMedia
-        sx={{ height: 500}}
+        sx={{ height: 500, backgroundSize: "contain"}}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
             : img
         }
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
         <Grid container>
-          <Grid size={{xs: 6}}>
+          <Grid size={{ xs: 6 }}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
               {movie.release_date}

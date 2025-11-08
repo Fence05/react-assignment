@@ -8,6 +8,8 @@ function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
+  const [belowRatingFilter, setBelowRatingFilter] = useState(10); 
+  const [aboveRatingFilter, setAboveRatingFilter] = useState(0);
 
   let displayedMovies = movies
     .filter((m) => {
@@ -15,12 +17,35 @@ function MovieListPageTemplate({ movies, title, action }) {
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    })
+    .filter((m) => {
+      return (
+        m.vote_average <= belowRatingFilter &&
+        m.vote_average >= aboveRatingFilter
+      );
     });
 
   const handleChange = (type, value) => {
-    if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
-  };
+    switch (type) {
+      case "name":
+        setNameFilter(value);
+        break;
+      case "genre":
+        setGenreFilter(value);
+        break;
+      case "belowRating":
+        setBelowRatingFilter(value);
+        break;
+      case "aboveRating":
+        setAboveRatingFilter(value);
+        break;
+      default:
+        break;
+  }};
+
+
+
+  
 
   return (
     <Grid container>
@@ -37,6 +62,8 @@ function MovieListPageTemplate({ movies, title, action }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            belowRatingFilter={belowRatingFilter}
+            aboveRatingFilter={aboveRatingFilter}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

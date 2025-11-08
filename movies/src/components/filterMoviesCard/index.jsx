@@ -13,7 +13,7 @@ import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
-
+import Slider from "@mui/material/Slider";
 
 
 const formControl = 
@@ -21,7 +21,7 @@ const formControl =
     margin: 1,
     minWidth: "90%",
     backgroundColor: "#ffefea",
-    borderRadius: "20px", border: "1px solid #black"
+    borderRadius: "30px"
   };
 
 export default function FilterMoviesCard(props) {
@@ -41,8 +41,8 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
   const genres = data.genres;
-  if (genres[0].name !== "All"){
-    genres.unshift({ id: "0", name: "All" });
+  if (genres[0].name !== "All genres"){
+    genres.unshift({ id: "0", name: "All genres" });
   }
 
   const handleChange = (e, type, value) => {
@@ -58,6 +58,15 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
+  const handleBelowRatingChange = (e, newValue) => {
+    handleChange(e, "belowRating", newValue); 
+  };
+
+  const handleAboveRatingChange = (e, newValue) => {
+    handleChange(e, "aboveRating", newValue);
+  };
+
+
 
 
   return (
@@ -68,21 +77,23 @@ export default function FilterMoviesCard(props) {
       variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
+          <SearchIcon fontSize="large" fontWeight="bold"  />
+             Filter Movies
         </Typography>
         <TextField
           sx={{...formControl}}
           id="filled-search"
-          label="Search field"
+          label="Search Movies"
           type="search"
           variant="filled"
           value={props.titleFilter}
           onChange={handleTextChange}
         />
 
+        
+
         <FormControl sx={{...formControl}}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+          <InputLabel id="genre-label"></InputLabel>
         <Select
           labelId="genre-label"
           id="genre-select"
@@ -99,6 +110,41 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
+
+          <Typography variant="h6" sx={{ color: "#fff" }}>
+            Show movies below rating
+          </Typography>
+          <Slider
+            value={props.belowRatingFilter}
+            onChange={handleBelowRatingChange}
+            valueLabelDisplay="auto"
+            min={0}
+            max={10}
+            step={0.5}
+            sx={{
+              color: "#ffefea",
+              width: "90%",
+              ml: "5%",
+            }}
+          />
+          <Typography variant="h6" sx={{ color: "#fff" }}>
+            Show movies above rating
+          </Typography>
+          <Slider
+            value={props.aboveRatingFilter}
+            onChange={handleAboveRatingChange}
+            valueLabelDisplay="auto"
+            min={0}
+            max={10}
+            step={0.5}
+            sx={{
+              color: "#ffefea",
+              width: "90%",
+              ml: "5%",
+            }}
+          />
+
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}
