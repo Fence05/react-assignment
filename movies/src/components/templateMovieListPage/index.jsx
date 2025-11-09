@@ -3,6 +3,8 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
@@ -10,6 +12,8 @@ function MovieListPageTemplate({ movies, title, action }) {
   const genreId = Number(genreFilter);
   const [belowRatingFilter, setBelowRatingFilter] = useState(10); 
   const [aboveRatingFilter, setAboveRatingFilter] = useState(0);
+  const [page, setPage] = useState(1);
+  
 
   let displayedMovies = movies
     .filter((m) => {
@@ -24,6 +28,20 @@ function MovieListPageTemplate({ movies, title, action }) {
         m.vote_average >= aboveRatingFilter
       );
     });
+
+
+
+
+  const moviesPerPage = 7;
+
+  const startIndex = (page - 1) * moviesPerPage;
+  const endIndex = startIndex + moviesPerPage;
+  
+  const paginatedMovies = displayedMovies.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(displayedMovies.length / moviesPerPage);
+
+
 
   const handleChange = (type, value) => {
     switch (type) {
@@ -41,7 +59,9 @@ function MovieListPageTemplate({ movies, title, action }) {
         break;
       default:
         break;
-  }};
+      }
+    setPage(1);
+  };
 
 
 
@@ -66,7 +86,36 @@ function MovieListPageTemplate({ movies, title, action }) {
             aboveRatingFilter={aboveRatingFilter}
           />
         </Grid>
-        <MovieList action={action} movies={displayedMovies}></MovieList>
+        <MovieList action={action} movies={paginatedMovies}></MovieList>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            padding: "40px"
+          }}
+        >
+          <Button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+          >
+            Previous
+          </Button>
+        
+          <span>Page {page} of {totalPages}</span>
+        
+          <Button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+          >
+            Next
+          </Button>
+        </div>
+
+
       </Grid>
     </Grid>
   );
